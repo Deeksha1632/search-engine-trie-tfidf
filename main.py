@@ -10,6 +10,7 @@ def test_Trie():
     print(trie.search("stair"))  # True
     print(trie.search("stamp"))  # False
     print(trie.search("tassle"))
+    print(trie.autocomplete("sta"))
 
 if __name__=="__main__":
     test_Trie()
