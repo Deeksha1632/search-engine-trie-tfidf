@@ -1,0 +1,33 @@
+project_setup_with_git:
+  step_1: 
+    description: "Create Project Folder"
+    example: "search-engine-trie-tfidf"
+  step_2:
+    description: "Initialize Git"
+    command: "git init"
+    purpose: "Turns your folder into a Git repository (version control system)"
+  step_3:
+    description: "Create Folder Structure & Files"
+    folders:
+      - "trie/  # for Trie code"
+    files:
+      - "trie/trie.py  # Trie implementation"
+      - "main.py  # to test code"
+      - "README.md  # project overview"
+      - ".gitignore  # to ignore cache and secrets"
+  step_4:
+    description: "Setup .gitignore"
+    content: |
+      __pycache__/
+      *.pyc
+      .env
+  step_5:
+    description: "Add & Commit Files"
+    commands:
+      - "git add .  # stage files"
+      - 'git commit -m "Initial commit: project structure and basic files"  # commit snapshot'
+  purpose:
+    - "Keeps project clean & modular"
+    - "Records history of changes"
+    - "Helps collaborate or revert changes later"
+    - "Avoids committing unnecessary files"
