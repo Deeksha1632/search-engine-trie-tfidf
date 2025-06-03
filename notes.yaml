@@ -31,3 +31,14 @@ project_setup_with_git:
     - "Records history of changes"
     - "Helps collaborate or revert changes later"
     - "Avoids committing unnecessary files"
+
+
+
+Step-by-step logic for autocomplete:
+1. Traverse the Trie to the node representing the last character of the prefix
+If at any point the prefix is not found, return empty list [].
+
+2. From that node, perform a DFS (Depth First Search) to find all complete words below it
+Collect words by tracking characters as you go deeper.
+
+3. Return the list of words found.
