@@ -65,6 +65,6 @@ class TFIDFSearchEngine:
             scores.append([score,i])
         
         scores.sort(reverse=True)
-        return ((self.documents[i],score) for score,i in scores if score>0)
+        return ((i,self.documents[i],score) for score,i in scores if score>0)
 
     
