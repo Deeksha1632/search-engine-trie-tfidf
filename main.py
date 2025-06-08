@@ -14,20 +14,37 @@ documents = [
     "Model validation ensures that the decision model accurately represents real-world scenarios.",
     "Software tools like Excel Solver and Analytica are used to build and analyze decision models."
 ]
+
+# Initialize trie
+trie = Trie()
+
+#Insert every word into the Trie
+for doc in documents:
+    for word in doc.lower().split():
+        trie.insert(word)
+
 # Initialize the search engine
 engine = TFIDFSearchEngine(documents)
 
-#Example queries
-queries = ["optimization",
-           "decision making",
-           "uncertainty",
-           "sensitivity",
-           "trees",
-           "simulation",
-           "Excel Solver"]
+prefix = input("🔍 Enter a prefix to search: ")
+suggestions = trie.autocomplete(prefix)
 
-for query in queries:
-    print(f"\n \U0001F50D Query: {query}")
-    results = engine.score(query)
-    for doc_i,doc,score in results:
-        print(f"Score: {score:.4f} | {doc_i+1}. {doc}")
+# Show suggestions
+'''print("\n🔤 Suggestions:")
+for word in suggestions:
+    print(f"• {word}")'''
+
+
+# Get and show relevant documents for each suggested word
+print("\n📄 Relevant Documents (Ranked by TF-IDF Score):\n")
+if not suggestions:
+    print(f"🔹 Word: No word found -- No relevant documents found.\n")
+for word in suggestions:
+    results =list(engine.score(word))
+    if results:
+        print(f"🔹 Word: {word}")
+        for doc_no,doc,score in results[:2]: #TOP 2 docs
+            print(f"   • Doc {doc_no+1}:s\"{doc}\" (Score: {score:.4f})")
+        print()
+    else:
+        print(f"🔹 Word: {word} -- No relevant documents found.\n")

@@ -19,7 +19,7 @@ class Trie:
         curr = self.root
         for ch in word:
             if ch not in curr.children:
-                return False
+                return []
             curr = curr.children[ch]
         return curr.end_of_word
     
@@ -33,7 +33,7 @@ class Trie:
             return 
         curr = self.root
         for ch in prefix:
-            if not curr.children[ch]:
+            if ch not in curr.children:
                 return []
             curr = curr.children[ch]
         ans = []
